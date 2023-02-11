@@ -5,5 +5,5 @@ class Company():
         self.base_number = None
         pass
 
-    # def calc():
+    # def calc(self, patent_emb:):
         
