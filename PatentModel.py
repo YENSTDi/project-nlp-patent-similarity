@@ -5,11 +5,11 @@ from transformers import AutoModel
 
 
 class PatentModel():
-    def __init__(self, pretrained_name:str="anferico/bert-for-patents", use_gpu=True) -> None:
-        self.tokenizer = AutoTokenizer.from_pretrained(pretrained_name)
-        self.model = AutoModel.from_pretrained(pretrained_name)
-        self.device = "cuda:0" if torch.cuda.is_available() and use_gpu else "cpu"
-        self.model = self.model.to(self.device)
+    def __init__(self, pretrained_name:str="anferico/bert-for-patents", use_gpu:bool=True) -> None:
+        self.device     = "cuda:0" if torch.cuda.is_available() and use_gpu else "cpu"
+        self.tokenizer  = AutoTokenizer.from_pretrained(pretrained_name)
+        self.model      = AutoModel.from_pretrained(pretrained_name)
+        self.model      = self.model.to(self.device)
 
     def embedding(self, text:str):
         token = self.tokenizer(text, return_tensors='pt', max_length=512, truncation=True)
